@@ -33,8 +33,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     private static final String[] AUTH_WHITELIST = {
-            "/",
             "/authenticate",
+            "/product/all/{typeId}",
+            "/productType/all",
+            "/worker/all"
     };
 
 
