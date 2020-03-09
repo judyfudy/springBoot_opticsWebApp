@@ -36,7 +36,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/authenticate",
             "/product/all/{typeId}",
             "/productType/all",
-            "/worker/all"
+            "/worker/all",
+            "/signup",
     };
 
 
