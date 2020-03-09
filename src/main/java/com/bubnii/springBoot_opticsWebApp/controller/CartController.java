@@ -6,10 +6,12 @@ import com.bubnii.springBoot_opticsWebApp.security.model.UserPrinciple;
 import com.bubnii.springBoot_opticsWebApp.service.interfaces.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/cart")
 public class CartController {
@@ -22,29 +24,25 @@ public class CartController {
 
 
     @GetMapping("/all")
-    public List<ProductDTO> getAllProductsInCart(Authentication authentication) {
-        UserPrinciple principal = (UserPrinciple) authentication.getPrincipal();
-        return productService.getAllProductsInCart(principal.getId());
+    public List<ProductDTO> getAllProductsInCart(@AuthenticationPrincipal UserPrinciple principle) {
+        return productService.getAllProductsInCart(principle.getId());
     }
 
     @PostMapping
-    public ResponseEntity<?> addProductToCart(@RequestParam("productId") final String productId, Authentication authentication) {
-        UserPrinciple principal = (UserPrinciple) authentication.getPrincipal();
-        productService.addProductToCart(principal.getId(), Integer.parseInt(productId));
+    public ResponseEntity<?> addProductToCart(@RequestParam("productId") final String productId, @AuthenticationPrincipal UserPrinciple principle) {
+        productService.addProductToCart(principle.getId(), Integer.parseInt(productId));
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping
-    public ResponseEntity<?> deleteFromCart(@RequestParam("productId") final String productId, Authentication authentication) {
-        UserPrinciple principal = (UserPrinciple) authentication.getPrincipal();
-        productService.deleteFromCart(Integer.parseInt(productId), principal.getId());
+    public ResponseEntity<?> deleteFromCart(@RequestParam("productId") final String productId, @AuthenticationPrincipal UserPrinciple principle) {
+        productService.deleteFromCart(Integer.parseInt(productId), principle.getId());
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/clear")
-    public ResponseEntity<?> clearCart(Authentication authentication) {
-        UserPrinciple principal = (UserPrinciple) authentication.getPrincipal();
-        productService.clearCart(principal.getId());
+    public ResponseEntity<?> clearCart(@AuthenticationPrincipal UserPrinciple principle) {
+        productService.clearCart(principle.getId());
         return ResponseEntity.ok().build();
     }
 }
