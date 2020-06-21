@@ -57,6 +57,9 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public void add(final Product product) {
+        jdbcTemplate.update("INSERT INTO product(price, name, quantity, description, photo, brand, model, product_type_id)" +
+                " VALUES(?,?,?,?,?,?,?,?)", product.getPrice(), product.getName(), product.getQuantity(), product.getDescription(),
+                product.getPhoto(), product.getBrand(), product.getModel(), product.getProductTypeId());
     }
 
     @Override
@@ -65,12 +68,17 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public boolean update(final Product product) {
+    public void update(Product user) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public boolean delete(final int id) {
+    public void changeUserRole(String role, int id) {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void delete(final int id) {
+        jdbcTemplate.update("DELETE FROM product WHERE id=?", id);
     }
 }
