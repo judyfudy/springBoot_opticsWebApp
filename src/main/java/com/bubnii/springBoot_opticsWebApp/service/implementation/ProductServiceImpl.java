@@ -2,6 +2,7 @@ package com.bubnii.springBoot_opticsWebApp.service.implementation;
 
 import com.bubnii.springBoot_opticsWebApp.dto.ProductDTO;
 import com.bubnii.springBoot_opticsWebApp.dto.ProductTypeDTO;
+import com.bubnii.springBoot_opticsWebApp.entity.Product;
 import com.bubnii.springBoot_opticsWebApp.repository.interfaces.ProductRepository;
 import com.bubnii.springBoot_opticsWebApp.service.interfaces.ProductService;
 import org.modelmapper.ModelMapper;
@@ -65,5 +66,15 @@ public class ProductServiceImpl implements ProductService {
 
     public void clearCart(final int userId) {
         productRepository.clearCart(userId);
+    }
+
+    @Override
+    public void add(Product product) {
+        productRepository.add(product);
+    }
+
+    @Override
+    public void delete(int productId) {
+        productRepository.delete(productId);
     }
 }
