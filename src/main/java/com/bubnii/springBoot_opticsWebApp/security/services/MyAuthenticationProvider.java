@@ -1,11 +1,8 @@
 package com.bubnii.springBoot_opticsWebApp.security.services;
 
-import com.bubnii.springBoot_opticsWebApp.dto.UserDTO;
 import com.bubnii.springBoot_opticsWebApp.entity.User;
 import com.bubnii.springBoot_opticsWebApp.repository.interfaces.UserRepository;
 import com.bubnii.springBoot_opticsWebApp.security.model.UserPrinciple;
-import com.bubnii.springBoot_opticsWebApp.service.interfaces.UserService;
-import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
