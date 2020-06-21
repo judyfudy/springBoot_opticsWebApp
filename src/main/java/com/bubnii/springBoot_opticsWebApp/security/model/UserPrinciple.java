@@ -1,6 +1,7 @@
 package com.bubnii.springBoot_opticsWebApp.security.model;
 
 import com.bubnii.springBoot_opticsWebApp.entity.User;
+import com.bubnii.springBoot_opticsWebApp.enums.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ public class UserPrinciple implements UserDetails {
     private Integer id;
     private String username;
     private String email;
+    private UserType userType;
 
     @Override
     public boolean isAccountNonExpired() {
@@ -49,6 +51,7 @@ public class UserPrinciple implements UserDetails {
         return new UserPrinciple(
                 user.getId(),
                 user.getUsername(),
-                user.getEmail());
+                user.getEmail(),
+                user.getUserType());
     }
 }
