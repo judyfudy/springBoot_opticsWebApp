@@ -18,7 +18,8 @@ public class JwtProvider {
 
         final UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
         return Jwts.builder()
-                .setSubject((userPrinciple.getId()).toString())
+                .setSubject((userPrinciple.getUserType()).toString())
+                .setId((userPrinciple.getId()).toString())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + 1000 * 60 * 60 * 10))
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
@@ -29,7 +30,8 @@ public class JwtProvider {
         final UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
 
         return Jwts.builder()
-                .setSubject((userPrinciple.getId()).toString())
+                .setSubject((userPrinciple.getUserType()).toString())
+                .setId((userPrinciple.getId()).toString())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + 1000 * 60 * 60 * 10))
                 .signWith(SignatureAlgorithm.HS256, jwtSecret)
@@ -58,6 +60,6 @@ public class JwtProvider {
         return Integer.valueOf(Jwts.parser()
                 .setSigningKey(jwtSecret)
                 .parseClaimsJws(token)
-                .getBody().getSubject());
+                .getBody().getId());
     }
 }
