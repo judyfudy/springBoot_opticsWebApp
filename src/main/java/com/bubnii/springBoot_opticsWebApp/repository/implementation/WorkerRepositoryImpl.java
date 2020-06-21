@@ -1,5 +1,6 @@
 package com.bubnii.springBoot_opticsWebApp.repository.implementation;
 
+import com.bubnii.springBoot_opticsWebApp.entity.User;
 import com.bubnii.springBoot_opticsWebApp.entity.Worker;
 import com.bubnii.springBoot_opticsWebApp.repository.interfaces.WorkerRepository;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -33,12 +34,17 @@ public class WorkerRepositoryImpl implements WorkerRepository {
     }
 
     @Override
-    public boolean update(final Worker worker) {
+    public void update(Worker user) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public boolean delete(final int id) {
+    public void changeUserRole(String role, int id) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void delete(final int id) {
         throw new UnsupportedOperationException();
     }
 }
