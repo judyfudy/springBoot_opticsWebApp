@@ -1,6 +1,7 @@
 package com.bubnii.springBoot_opticsWebApp.config;
 
 
+import com.bubnii.springBoot_opticsWebApp.enums.UserType;
 import com.bubnii.springBoot_opticsWebApp.security.jwt.JwtAuthEntryPoint;
 import com.bubnii.springBoot_opticsWebApp.security.jwt.JwtAuthTokenFilter;
 import com.bubnii.springBoot_opticsWebApp.security.services.MyAuthenticationProvider;
@@ -38,6 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/productType/all",
             "/worker/all",
             "/signup",
+            "/signinFacebook"
     };
 
 
