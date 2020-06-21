@@ -3,7 +3,6 @@ package com.bubnii.springBoot_opticsWebApp.service.implementation;
 import com.bubnii.springBoot_opticsWebApp.dto.UserDTO;
 import com.bubnii.springBoot_opticsWebApp.entity.User;
 import com.bubnii.springBoot_opticsWebApp.repository.interfaces.UserRepository;
-import com.bubnii.springBoot_opticsWebApp.service.interfaces.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements com.bubnii.springBoot_opticsWebApp.service.interfaces.UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
@@ -24,6 +23,10 @@ public class UserServiceImpl implements UserService {
         this.modelMapper = modelMapper;
     }
 
+    @Override
+    public boolean existsByUsername(String username) {
+        return userRepository.existsByUsername(username);
+    }
 
     @Override
     public List<UserDTO> getAll() {
@@ -45,13 +48,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean update(final User user) {
-        return userRepository.update(user);
+    public void update(final User user) {
+         userRepository.update(user);
     }
 
     @Override
-    public boolean delete(final int id) {
-        return userRepository.delete(id);
+    public void changeUserRole(final String role, final int id) {
+        userRepository.changeUserRole(role, id);
+    }
+
+    @Override
+    public void delete(final int id) {
+        userRepository.delete(id);
     }
 
     @Override
