@@ -13,9 +13,13 @@ public interface UserService {
 
     UserDTO get(int id);
 
-    boolean update(User user);
+    void update(final User user);
 
-    boolean delete(int id);
+    void changeUserRole(final String role, final int id);
+
+    void delete(int id);
 
     UserDTO getPersonByCredentials(String username);
+
+    boolean existsByUsername(String username);
 }
