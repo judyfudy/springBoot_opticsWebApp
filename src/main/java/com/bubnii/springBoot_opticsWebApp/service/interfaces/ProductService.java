@@ -21,4 +21,8 @@ public interface ProductService {
     void deleteFromCart(final int productId, final int userId);
 
     void clearCart(final int userId);
+
+    void add(final Product product);
+
+    void delete(final int productId);
 }
